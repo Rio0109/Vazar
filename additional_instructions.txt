@@ -7,7 +7,7 @@ Ante MacOS config
 
 dbpass: Start#1234
 
-
- dotnet-ef database update
+Run database update
+dotnet-ef database update
 
  _______________________________________________
