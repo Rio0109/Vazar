@@ -1,3 +1,4 @@
+#region
 using Microsoft.EntityFrameworkCore;
 using Vazar.Data;
 
@@ -31,3 +32,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+#endregion
