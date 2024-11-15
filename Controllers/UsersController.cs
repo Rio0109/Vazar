@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Vazar.Data;
 using Vazar.Data.model;
 
@@ -46,20 +46,17 @@ namespace Vazar.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            // Pronalaženje korisnika prema ID-u
-            var user = _database.Users.Find(id);
+            var deletedId = _database.Users
+             .Where(user => user.Id == id)
+             .ExecuteDelete();
 
-            if (user == null)
+            // If the return value is 0 means we didn't deleted any user
+            if (deletedId == 0)
             {
-                return NotFound(); // Ako korisnik nije pronađen, vratite 404
+                return NotFound();
             }
-
-            _database.Users.Remove(user); // Uklonite korisnika iz baze
-            _database.SaveChanges(); // Potvrdite promjene u bazi
 
             return NoContent(); // Vratite 204 No Content status, jer se korisnik uspješno obrisao
         }
-
-
     }
 }
