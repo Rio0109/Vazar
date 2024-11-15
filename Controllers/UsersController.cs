@@ -40,5 +40,23 @@ namespace Vazar.Controllers
             return CreatedAtAction(nameof(Get), new { id = user.Id }, user);
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            // Pronalaženje korisnika prema ID-u
+            var user = _database.Users.Find(id);
+
+            if (user == null)
+            {
+                return NotFound(); // Ako korisnik nije pronađen, vratite 404
+            }
+
+            _database.Users.Remove(user); // Uklonite korisnika iz baze
+            _database.SaveChanges(); // Potvrdite promjene u bazi
+
+            return NoContent(); // Vratite 204 No Content status, jer se korisnik uspješno obrisao
+        }
+
+
     }
 }
