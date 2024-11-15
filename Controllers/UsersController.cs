@@ -58,5 +58,29 @@ namespace Vazar.Controllers
 
             return NoContent(); // Vratite 204 No Content status, jer se korisnik uspješno obrisao
         }
+
+        [HttpPut]
+        public IActionResult Put(User updatedUser)
+        {
+            // Find the existing user by ID
+            var existingUser = _database.Users.SingleOrDefault(u => u.Id == updatedUser.Id);
+
+            if (existingUser == null)
+            {
+                // Return 404 if the user does not exist
+                return NotFound("User not found");
+            }
+
+            // Update the user's properties
+            existingUser.Name = updatedUser.Name;
+            existingUser.Email = updatedUser.Email;
+
+            // Save changes to the database
+            _database.SaveChanges();
+
+            // Return 204 No Content to indicate success
+            return NoContent();
+        }
+
     }
 }
