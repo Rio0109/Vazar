@@ -27,6 +27,9 @@ namespace Vazar.Controllers
         [HttpPost]
         public IActionResult Post(User user)
         {
+            // Ensure the Id is ignored
+            user.Id = 0;
+
             // Provjera postoji li već korisnik s istim emailom
             var existingUser = _database.Users.SingleOrDefault(u => u.Email == user.Email);
             if (existingUser != null)
