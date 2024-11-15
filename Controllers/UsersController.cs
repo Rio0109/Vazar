@@ -46,12 +46,12 @@ namespace Vazar.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var deletedId = _database.Users
+            var numberOfDeletedRows = _database.Users
              .Where(user => user.Id == id)
              .ExecuteDelete();
 
             // If the return value is 0 means we didn't deleted any user
-            if (deletedId == 0)
+            if (numberOfDeletedRows == 0)
             {
                 return NotFound();
             }
