@@ -1,3 +1,13 @@
 When program pulled from, ensure nugets are downloaded. Use following commang
 
 dotnet restore
+_______________________________________________
+
+Ante MacOS config
+
+dbpass: Start#1234
+
+
+ dotnet-ef database update
+
+ _______________________________________________
