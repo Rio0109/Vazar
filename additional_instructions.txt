@@ -1,0 +1,3 @@
+When program pulled from, ensure nugets are downloaded. Use following commang
+
+dotnet restore
