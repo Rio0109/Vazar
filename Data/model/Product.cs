@@ -9,8 +9,10 @@ namespace Vazar.Data.model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // Ovdje označavate da ID bude auto-increment
         public int Id { get; set; }
         public string Name { get; set; }
-        public decimal Price  { get; set; }
-        public int Produced { get; set; }
-        public string Model { get; set; }
+        public string Description { get; set; }
+        public decimal StartingPrice { get; set; }
+        public string ImageUrl { get; set; }
+
+        public DateTime AuctionEndDate { get; set; }
     }
 }

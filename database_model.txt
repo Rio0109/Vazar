@@ -26,39 +26,17 @@ CREATE TABLE Products (
 Databaza Products:
 
 CREATE TABLE Products (
-    Id INT AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(255) NOT NULL,
-    Price DECIMAL(10, 2) NOT NULL,
-    Produced INT NOT NULL
+    Id INT AUTO_INCREMENT PRIMARY KEY,     -- Jedinstveni identifikator, auto-increment
+    Name VARCHAR(255) NOT NULL,            -- Naziv proizvoda, obavezno polje
+    Description TEXT,                      -- Opis proizvoda, nije obavezno
+    StartingPrice DECIMAL(10, 2) NOT NULL, -- Po?etna cijena, obavezno polje
+    ImageUrl VARCHAR(2083),                -- URL slike, maksimalna duljina 2083 (standard za URL)
+    AuctionEndDate DATETIME NOT NULL       -- Datum i vrijeme završetka aukcije, obavezno
 );
 
-INSERT INTO Products (Name, Price, Produced) 
-VALUES 
-('Laptop', 899.99, 50), 
-('Smartphone', 499.49, 200), 
-('Headphones', 49.99, 500), 
-('Keyboard', 29.99, 150), 
-('Monitor', 199.99, 80);
 
-ALTER TABLE Products 
-ADD Model VARCHAR(100) AFTER Produced;
-
-SET SQL_SAFE_UPDATES = 0;
-
-UPDATE Products 
-SET Model = 'XPS 13' 
-WHERE Name = 'Laptop';
-UPDATE Products 
-SET Model = 'Galaxy S21' 
-WHERE Name = 'Smartphone';
-UPDATE Products 
-SET Model = 'WH-1000XM4' 
-WHERE Name = 'Headphones';
-UPDATE Products 
-SET Model = 'MX Keys' 
-WHERE Name = 'Keyboard';
-UPDATE Products 
-SET Model = 'Ultrasharp 27' 
-WHERE Name = 'Monitor';
-
-SET SQL_SAFE_UPDATES = 1;
+INSERT INTO Products (Name, Description, StartingPrice, ImageUrl, AuctionEndDate)
+VALUES
+('Antique Vase', 'A rare antique vase from the 19th century.', 250.00, 'https://example.com/vase.jpg', '2024-12-31 18:00:00'),
+('Smartphone', 'Latest model smartphone with advanced features.', 699.99, 'https://example.com/smartphone.jpg', '2024-11-30 23:59:59'),
+('Mountain Bike', 'A durable mountain bike suitable for off-road cycling.', 349.50, 'https://example.com/bike.jpg', '2024-12-15 12:00:00');

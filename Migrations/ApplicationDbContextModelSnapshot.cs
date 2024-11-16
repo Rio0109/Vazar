@@ -53,23 +53,27 @@ namespace Vazar.Migrations
 
                 b.Property<string>("Name")
                     .IsRequired()
-                    .HasColumnType("longtext");
+                    .HasColumnType("varchar(255)"); // Naziv proizvoda (ograničenje duljine)
 
-                b.Property<decimal>("Price")
+                b.Property<string>("Description")
+                    .HasColumnType("text"); // Opis proizvoda
+
+                b.Property<decimal>("StartingPrice")
                     .IsRequired()
-                    .HasColumnType("decimal(10,2)"); // Definiramo format decimalnog polja
+                    .HasColumnType("decimal(10,2)"); // Početna cijena
 
-                b.Property<int>("Produced") // Dodajemo polje Produced
+                b.Property<string>("ImageUrl")
+                    .HasColumnType("varchar(2083)"); // URL slike
+
+                b.Property<DateTime>("AuctionEndDate")
                     .IsRequired()
-                    .HasColumnType("int");
-
-                b.Property<string>("Model") // Dodajemo polje Model
-                    .HasColumnType("longtext"); // Polje može biti NULL ako nije obavezno
+                    .HasColumnType("datetime"); // Datum i vrijeme završetka aukcije
 
                 b.HasKey("Id");
 
-                b.ToTable("Products"); // Ispravno ime tablice
+                b.ToTable("Products"); // Naziv tablice
             });
+
 #pragma warning restore 612, 618
         }
     }
