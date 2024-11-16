@@ -41,6 +41,35 @@ namespace Vazar.Migrations
 
                     b.ToTable("Users");
                 });
+
+            //products
+            modelBuilder.Entity("Vazar.Data.model.Product", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
+
+                MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasColumnType("longtext");
+
+                b.Property<decimal>("Price")
+                    .IsRequired()
+                    .HasColumnType("decimal(10,2)"); // Definiramo format decimalnog polja
+
+                b.Property<int>("Produced") // Dodajemo polje Produced
+                    .IsRequired()
+                    .HasColumnType("int");
+
+                b.Property<string>("Model") // Dodajemo polje Model
+                    .HasColumnType("longtext"); // Polje može biti NULL ako nije obavezno
+
+                b.HasKey("Id");
+
+                b.ToTable("Products"); // Ispravno ime tablice
+            });
 #pragma warning restore 612, 618
         }
     }

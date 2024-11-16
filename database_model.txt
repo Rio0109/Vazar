@@ -1,3 +1,4 @@
+
 CREATE TABLE Users ( 
 	Id INT AUTO_INCREMENT PRIMARY KEY, 
 	Name VARCHAR(100) NOT NULL,
@@ -10,3 +11,54 @@ INSERT INTO Users (Name, Email) VALUES
 ('Alice Johnson', 'alice.johnson@example.com'), 
 ('Bob Brown', 'bob.brown@example.com'), 
 ('Charlie Davis', 'charlie.davis@example.com');
+
+
+
+CREATE TABLE Products (
+    Id INT AUTO_INCREMENT PRIMARY KEY, -- Primarni klju? s automatskim inkrementom
+    Name VARCHAR(255) NOT NULL,        -- Polje za naziv proizvoda, maksimalna duljina 255
+    Price DECIMAL(10, 2) NOT NULL,     -- Decimalno polje za cijenu s maksimalno 10 znamenki i 2 decimalna mjesta
+    Produced INT NOT NULL              -- Integer polje za proizvedenu koli?inu
+);
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+Databaza Products:
+
+CREATE TABLE Products (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(255) NOT NULL,
+    Price DECIMAL(10, 2) NOT NULL,
+    Produced INT NOT NULL
+);
+
+INSERT INTO Products (Name, Price, Produced) 
+VALUES 
+('Laptop', 899.99, 50), 
+('Smartphone', 499.49, 200), 
+('Headphones', 49.99, 500), 
+('Keyboard', 29.99, 150), 
+('Monitor', 199.99, 80);
+
+ALTER TABLE Products 
+ADD Model VARCHAR(100) AFTER Produced;
+
+SET SQL_SAFE_UPDATES = 0;
+
+UPDATE Products 
+SET Model = 'XPS 13' 
+WHERE Name = 'Laptop';
+UPDATE Products 
+SET Model = 'Galaxy S21' 
+WHERE Name = 'Smartphone';
+UPDATE Products 
+SET Model = 'WH-1000XM4' 
+WHERE Name = 'Headphones';
+UPDATE Products 
+SET Model = 'MX Keys' 
+WHERE Name = 'Keyboard';
+UPDATE Products 
+SET Model = 'Ultrasharp 27' 
+WHERE Name = 'Monitor';
+
+SET SQL_SAFE_UPDATES = 1;
